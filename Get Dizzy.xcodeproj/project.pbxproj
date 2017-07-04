@@ -15,6 +15,7 @@
 		36AEEEF71F0BF95D004AAD2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36AEEEF51F0BF95D004AAD2E /* LaunchScreen.storyboard */; };
 		36AEEF021F0BF95E004AAD2E /* Get_DizzyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AEEF011F0BF95E004AAD2E /* Get_DizzyTests.swift */; };
 		36AEEF0D1F0BF9FE004AAD2E /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 36AEEF0C1F0BF9FE004AAD2E /* Models.scnassets */; };
+		36AEEF0F1F0C00D2004AAD2E /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AEEF0E1F0C00D2004AAD2E /* Object.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		36AEEF011F0BF95E004AAD2E /* Get_DizzyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Get_DizzyTests.swift; sourceTree = "<group>"; };
 		36AEEF031F0BF95E004AAD2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		36AEEF0C1F0BF9FE004AAD2E /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; name = Models.scnassets; path = ../../../Downloads/PlacingObjects/ARKitExample/Models.scnassets; sourceTree = "<group>"; };
+		36AEEF0E1F0C00D2004AAD2E /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				36AEEEF51F0BF95D004AAD2E /* LaunchScreen.storyboard */,
 				36AEEEF81F0BF95D004AAD2E /* Info.plist */,
 				36AEEEF01F0BF95D004AAD2E /* Get_Dizzy.xcdatamodeld */,
+				36AEEF0E1F0C00D2004AAD2E /* Object.swift */,
 			);
 			path = "Get Dizzy";
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 				36AEEEEC1F0BF95D004AAD2E /* ViewController.swift in Sources */,
 				36AEEEEA1F0BF95D004AAD2E /* AppDelegate.swift in Sources */,
 				36AEEEF21F0BF95D004AAD2E /* Get_Dizzy.xcdatamodeld in Sources */,
+				36AEEF0F1F0C00D2004AAD2E /* Object.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
