@@ -12,9 +12,12 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var sceneView: ARSCNView!
     
+    //MARK: view methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // create a new scene
         let scene = SCNScene()
         sceneView.scene = scene
     }
@@ -22,6 +25,7 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        // start the scene session with the World Tracking Session Configuration
         let configuration = ARWorldTrackingSessionConfiguration()
         sceneView.session.run(configuration)
         
@@ -39,6 +43,27 @@ class ViewController: UIViewController {
         
         sceneView.scene.rootNode.addChildNode(object)
     }
+    
+    //MARK: actions
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch = touches.first {
+            let location = touch.location(in: sceneView)
+            
+            let hitList = sceneView.hitTest(location, options: nil)
+            
+            if let hitObject = hitList.first {
+                let node = hitObject.node
+                
+                if node.name == "vase" {
+                    node.parent?.removeFromParentNode()
+                    addObject()
+                }
+            }
+        }
+    }
+    
+    //MARK: helpers
     
     func randomPosition (lowerBound lower: Float, upperBound upper: Float) -> Float {
         return Float(arc4random()) / Float(UInt32.max) * (lower - upper) + upper

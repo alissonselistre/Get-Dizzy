@@ -11,6 +11,7 @@ import ARKit
 class Object: SCNNode {
     
     func loadModel() {
+        
         guard let virtualObjectScene = SCNScene(named: "Models.scnassets/vase/vase.scn") else { return }
         
         let wrapperNode = SCNNode()
