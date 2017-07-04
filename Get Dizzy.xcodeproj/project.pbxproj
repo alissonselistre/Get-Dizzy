@@ -14,6 +14,7 @@
 		36AEEEF41F0BF95D004AAD2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36AEEEF31F0BF95D004AAD2E /* Assets.xcassets */; };
 		36AEEEF71F0BF95D004AAD2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36AEEEF51F0BF95D004AAD2E /* LaunchScreen.storyboard */; };
 		36AEEF021F0BF95E004AAD2E /* Get_DizzyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AEEF011F0BF95E004AAD2E /* Get_DizzyTests.swift */; };
+		36AEEF0D1F0BF9FE004AAD2E /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 36AEEF0C1F0BF9FE004AAD2E /* Models.scnassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		36AEEEFD1F0BF95E004AAD2E /* Get DizzyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Get DizzyTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36AEEF011F0BF95E004AAD2E /* Get_DizzyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Get_DizzyTests.swift; sourceTree = "<group>"; };
 		36AEEF031F0BF95E004AAD2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		36AEEF0C1F0BF9FE004AAD2E /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; name = Models.scnassets; path = ../../../Downloads/PlacingObjects/ARKitExample/Models.scnassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				36AEEEEB1F0BF95D004AAD2E /* ViewController.swift */,
 				36AEEEED1F0BF95D004AAD2E /* Main.storyboard */,
 				36AEEEF31F0BF95D004AAD2E /* Assets.xcassets */,
+				36AEEF0C1F0BF9FE004AAD2E /* Models.scnassets */,
 				36AEEEF51F0BF95D004AAD2E /* LaunchScreen.storyboard */,
 				36AEEEF81F0BF95D004AAD2E /* Info.plist */,
 				36AEEEF01F0BF95D004AAD2E /* Get_Dizzy.xcdatamodeld */,
@@ -181,6 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36AEEEF71F0BF95D004AAD2E /* LaunchScreen.storyboard in Resources */,
+				36AEEF0D1F0BF9FE004AAD2E /* Models.scnassets in Resources */,
 				36AEEEF41F0BF95D004AAD2E /* Assets.xcassets in Resources */,
 				36AEEEEF1F0BF95D004AAD2E /* Main.storyboard in Resources */,
 			);
