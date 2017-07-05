@@ -8,14 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		36AEEEEA1F0BF95D004AAD2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AEEEE91F0BF95D004AAD2E /* AppDelegate.swift */; };
-		36AEEEEC1F0BF95D004AAD2E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AEEEEB1F0BF95D004AAD2E /* ViewController.swift */; };
+		36AEEEEC1F0BF95D004AAD2E /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AEEEEB1F0BF95D004AAD2E /* GameViewController.swift */; };
 		36AEEEEF1F0BF95D004AAD2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36AEEEED1F0BF95D004AAD2E /* Main.storyboard */; };
 		36AEEEF21F0BF95D004AAD2E /* Get_Dizzy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 36AEEEF01F0BF95D004AAD2E /* Get_Dizzy.xcdatamodeld */; };
 		36AEEEF41F0BF95D004AAD2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36AEEEF31F0BF95D004AAD2E /* Assets.xcassets */; };
 		36AEEEF71F0BF95D004AAD2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36AEEEF51F0BF95D004AAD2E /* LaunchScreen.storyboard */; };
 		36AEEF021F0BF95E004AAD2E /* Get_DizzyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AEEF011F0BF95E004AAD2E /* Get_DizzyTests.swift */; };
-		36AEEF0D1F0BF9FE004AAD2E /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 36AEEF0C1F0BF9FE004AAD2E /* Models.scnassets */; };
 		36AEEF0F1F0C00D2004AAD2E /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AEEF0E1F0C00D2004AAD2E /* Object.swift */; };
+		36ECEA871F0C1A3600EA627E /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 36AEEF121F0C190E004AAD2E /* Models.scnassets */; };
+		36ECEA891F0C27E500EA627E /* NodeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ECEA881F0C27E500EA627E /* NodeAnimation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,7 +32,7 @@
 /* Begin PBXFileReference section */
 		36AEEEE61F0BF95D004AAD2E /* Get Dizzy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Get Dizzy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36AEEEE91F0BF95D004AAD2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		36AEEEEB1F0BF95D004AAD2E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		36AEEEEB1F0BF95D004AAD2E /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		36AEEEEE1F0BF95D004AAD2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		36AEEEF11F0BF95D004AAD2E /* Get_Dizzy.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Get_Dizzy.xcdatamodel; sourceTree = "<group>"; };
 		36AEEEF31F0BF95D004AAD2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -40,8 +41,9 @@
 		36AEEEFD1F0BF95E004AAD2E /* Get DizzyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Get DizzyTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36AEEF011F0BF95E004AAD2E /* Get_DizzyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Get_DizzyTests.swift; sourceTree = "<group>"; };
 		36AEEF031F0BF95E004AAD2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		36AEEF0C1F0BF9FE004AAD2E /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; name = Models.scnassets; path = ../../../Downloads/PlacingObjects/ARKitExample/Models.scnassets; sourceTree = "<group>"; };
 		36AEEF0E1F0C00D2004AAD2E /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
+		36AEEF121F0C190E004AAD2E /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Models.scnassets; sourceTree = "<group>"; };
+		36ECEA881F0C27E500EA627E /* NodeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeAnimation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,14 +86,15 @@
 			isa = PBXGroup;
 			children = (
 				36AEEEE91F0BF95D004AAD2E /* AppDelegate.swift */,
-				36AEEEEB1F0BF95D004AAD2E /* ViewController.swift */,
+				36AEEEEB1F0BF95D004AAD2E /* GameViewController.swift */,
 				36AEEEED1F0BF95D004AAD2E /* Main.storyboard */,
 				36AEEEF31F0BF95D004AAD2E /* Assets.xcassets */,
-				36AEEF0C1F0BF9FE004AAD2E /* Models.scnassets */,
+				36AEEF121F0C190E004AAD2E /* Models.scnassets */,
 				36AEEEF51F0BF95D004AAD2E /* LaunchScreen.storyboard */,
 				36AEEEF81F0BF95D004AAD2E /* Info.plist */,
 				36AEEEF01F0BF95D004AAD2E /* Get_Dizzy.xcdatamodeld */,
 				36AEEF0E1F0C00D2004AAD2E /* Object.swift */,
+				36ECEA881F0C27E500EA627E /* NodeAnimation.swift */,
 			);
 			path = "Get Dizzy";
 			sourceTree = "<group>";
@@ -187,7 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36AEEEF71F0BF95D004AAD2E /* LaunchScreen.storyboard in Resources */,
-				36AEEF0D1F0BF9FE004AAD2E /* Models.scnassets in Resources */,
+				36ECEA871F0C1A3600EA627E /* Models.scnassets in Resources */,
 				36AEEEF41F0BF95D004AAD2E /* Assets.xcassets in Resources */,
 				36AEEEEF1F0BF95D004AAD2E /* Main.storyboard in Resources */,
 			);
@@ -207,8 +210,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				36AEEEEC1F0BF95D004AAD2E /* ViewController.swift in Sources */,
+				36AEEEEC1F0BF95D004AAD2E /* GameViewController.swift in Sources */,
 				36AEEEEA1F0BF95D004AAD2E /* AppDelegate.swift in Sources */,
+				36ECEA891F0C27E500EA627E /* NodeAnimation.swift in Sources */,
 				36AEEEF21F0BF95D004AAD2E /* Get_Dizzy.xcdatamodeld in Sources */,
 				36AEEF0F1F0C00D2004AAD2E /* Object.swift in Sources */,
 			);
@@ -434,6 +438,7 @@
 				36AEEF081F0BF95E004AAD2E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		36AEEF091F0BF95E004AAD2E /* Build configuration list for PBXNativeTarget "Get DizzyTests" */ = {
 			isa = XCConfigurationList;
@@ -442,6 +447,7 @@
 				36AEEF0B1F0BF95E004AAD2E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

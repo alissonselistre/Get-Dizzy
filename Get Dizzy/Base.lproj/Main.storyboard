@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Game View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Get_Dizzy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="GameViewController" customModule="Get_Dizzy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -23,13 +23,30 @@
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lGM-cp-z4K">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </arscnView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hsy-HG-J7q">
+                                <rect key="frame" x="77" y="597" width="220" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="gKL-o7-YPq"/>
+                                    <constraint firstAttribute="width" constant="220" id="mpg-mz-Wha"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <state key="normal" title="Add Object">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="addObjectButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Gnf-gd-8gm"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="lGM-cp-z4K" secondAttribute="bottom" id="4FO-Aq-kmD"/>
+                            <constraint firstItem="hsy-HG-J7q" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VaW-AK-XNq"/>
                             <constraint firstAttribute="trailing" secondItem="lGM-cp-z4K" secondAttribute="trailing" id="abl-U5-hpn"/>
                             <constraint firstItem="lGM-cp-z4K" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="dOa-6W-HU6"/>
                             <constraint firstItem="lGM-cp-z4K" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="hjk-s5-cNr"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="hsy-HG-J7q" secondAttribute="bottom" constant="20" id="yXb-M8-n0x"/>
                         </constraints>
                     </view>
                     <connections>
