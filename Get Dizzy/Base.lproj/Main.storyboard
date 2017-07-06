@@ -49,7 +49,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get Dizzy" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uLo-Mn-rYD">
-                                        <rect key="frame" x="97" y="80" width="150" height="150"/>
+                                        <rect key="frame" x="97" y="69" width="150" height="150"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="150" id="NNA-v3-57n"/>
                                             <constraint firstAttribute="height" constant="150" id="kmx-gb-aUp"/>
@@ -61,7 +61,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="OkA-Uw-4Rr" firstAttribute="top" secondItem="uLo-Mn-rYD" secondAttribute="bottom" constant="8" id="JGM-pf-XY2"/>
+                                    <constraint firstItem="OkA-Uw-4Rr" firstAttribute="top" secondItem="uLo-Mn-rYD" secondAttribute="bottom" constant="20" id="JGM-pf-XY2"/>
                                     <constraint firstItem="uLo-Mn-rYD" firstAttribute="centerX" secondItem="mFi-9j-o2y" secondAttribute="centerX" id="Lji-kU-qLc"/>
                                     <constraint firstItem="OkA-Uw-4Rr" firstAttribute="centerX" secondItem="mFi-9j-o2y" secondAttribute="centerX" id="ZHU-WD-SWy"/>
                                     <constraint firstItem="OkA-Uw-4Rr" firstAttribute="centerY" secondItem="mFi-9j-o2y" secondAttribute="centerY" id="noV-yj-DLI"/>

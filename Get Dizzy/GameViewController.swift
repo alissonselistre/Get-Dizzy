@@ -9,9 +9,9 @@
 import ARKit
 
 //MARK: Game Settings
-let SCENARIO_LIMIT: Float = 1.5
-let NUMBER_OF_OBJECTS: Int = 10
-let TIME_TO_FINISH: Int = 15
+let SCENARIO_LIMIT: Float = 2.0
+let NUMBER_OF_OBJECTS: Int = 30
+let TIME_TO_FINISH: Int = 20
 
 class GameViewController: UIViewController {
     
@@ -25,6 +25,8 @@ class GameViewController: UIViewController {
     @IBOutlet weak var timeLeftCountLabel: UILabel!
     
     @IBOutlet weak var sceneView: ARSCNView!
+    
+    var objects: [Object] = []
     
     var destroyedCount: Int = 0 {
         didSet {
@@ -56,25 +58,37 @@ class GameViewController: UIViewController {
         // start the scene session with the World Tracking Session Configuration
         let configuration = ARWorldTrackingSessionConfiguration()
         sceneView.session.run(configuration)
+        
+        loadObjects()
     }
     
     //MARK: control methods
     
+    func loadObjects() {
+        for _ in 0..<NUMBER_OF_OBJECTS {
+            addObject()
+        }
+    }
+    
+    func showObjects() {
+        for object in objects {
+            object.position = random3DPosition()
+            object.fadeIn()
+        }
+    }
+    
     func startGame() {
         
-        self.destroyedCount = 0
+        destroyedCount = 0
         
         setUItoStartGame {
-            for _ in 0..<NUMBER_OF_OBJECTS {
-                self.addObject()
-            }
-            
             self.regressiveCounter(starting: TIME_TO_FINISH)
+            self.showObjects()
         }
     }
     
     func endGame () {
-        removeAllObjects()
+        hideAllObjects()
         setUItoEndGame()
     }
     
@@ -91,10 +105,13 @@ class GameViewController: UIViewController {
         }
     }
     
-    func objectDestroyed(object: SCNNode) {
-        object.blow()
+    func destroyObject(object: SCNNode) {
         destroyedCount += 1
-        addObject()
+        
+        object.blow {
+            object.position = self.random3DPosition()
+            object.fadeIn()
+        }
     }
     
     func addObject() {
@@ -104,10 +121,7 @@ class GameViewController: UIViewController {
         object.loadModel()
         
         // set a random position in scene
-        let xPos = randomPosition(lowerBound: -SCENARIO_LIMIT, upperBound: SCENARIO_LIMIT)
-        let yPos = randomPosition(lowerBound: -SCENARIO_LIMIT, upperBound: SCENARIO_LIMIT)
-        let zPos = randomPosition(lowerBound: -0.6, upperBound: -1)
-        object.position = SCNVector3(xPos, yPos, zPos)
+        object.position = random3DPosition()
         
         // set the first state of the object for the animations
         object.opacity = 0
@@ -115,14 +129,12 @@ class GameViewController: UIViewController {
         // add this object in scene
         sceneView.scene.rootNode.addChildNode(object)
         
-        // object animations
-        object.infiniteRotation()
-        object.fadeIn()
+        objects.append(object)
     }
     
-    func removeAllObjects() {
-        for node in sceneView.scene.rootNode.childNodes {
-            node.blow()
+    func hideAllObjects() {
+        for object in objects {
+            object.blow()
         }
     }
     
@@ -141,8 +153,8 @@ class GameViewController: UIViewController {
             if let hitObject = hitList.first {
                 let node = hitObject.node
                 
-                if node.name == "vase" && node.hasActionsRunning() == false {
-                    objectDestroyed(object: node)
+                if node.name == "vase" && node.hasActions == false {
+                    destroyObject(object: node)
                 }
             }
         }
@@ -186,6 +198,13 @@ class GameViewController: UIViewController {
     
     func randomPosition (lowerBound lower: Float, upperBound upper: Float) -> Float {
         return Float(arc4random()) / Float(UInt32.max) * (lower - upper) + upper
+    }
+    
+    func random3DPosition() -> SCNVector3 {
+        let xPos = randomPosition(lowerBound: -SCENARIO_LIMIT, upperBound: SCENARIO_LIMIT)
+        let yPos = randomPosition(lowerBound: -SCENARIO_LIMIT, upperBound: SCENARIO_LIMIT)
+        let zPos = randomPosition(lowerBound: -0.6, upperBound: -1)
+        return SCNVector3(xPos, yPos, zPos)
     }
 }
 
