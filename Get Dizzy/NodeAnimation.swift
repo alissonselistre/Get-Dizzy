@@ -21,12 +21,12 @@ extension SCNNode {
         let blowAction = SCNAction.group([scaleOutAction, fadeOutAction])
         
         let removeFromParentAction = SCNAction.run { (node) in
-            self.parent?.removeFromParentNode()
+            self.removeFromParentNode()
         }
         
         let animationSequence = SCNAction.sequence([blowAction, removeFromParentAction])
         
-        parent?.runAction(animationSequence)
+        runAction(animationSequence)
     }
     
     func infiniteRotation() {
