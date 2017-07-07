@@ -9,8 +9,8 @@
 import ARKit
 
 //MARK: Game Settings
-let SCENARIO_LIMIT: Float = 2.0
-let NUMBER_OF_OBJECTS: Int = 30
+let SCENARIO_RADIUS: Float = 1.5
+let NUMBER_OF_OBJECTS: Int = 20
 let TIME_TO_FINISH: Int = 20
 
 class GameViewController: UIViewController {
@@ -108,7 +108,7 @@ class GameViewController: UIViewController {
     func destroyObject(object: SCNNode) {
         destroyedCount += 1
         
-        object.blow {
+        object.fadeOut() {
             object.position = self.random3DPosition()
             object.fadeIn()
         }
@@ -134,7 +134,7 @@ class GameViewController: UIViewController {
     
     func hideAllObjects() {
         for object in objects {
-            object.blow()
+            object.fadeOut()
         }
     }
     
@@ -153,7 +153,7 @@ class GameViewController: UIViewController {
             if let hitObject = hitList.first {
                 let node = hitObject.node
                 
-                if node.name == "vase" && node.hasActions == false {
+                if node.hasActions == false {
                     destroyObject(object: node)
                 }
             }
@@ -166,7 +166,6 @@ class GameViewController: UIViewController {
         splashView.layer.cornerRadius = 10
         goButton.layer.masksToBounds = true
         goButton.layer.cornerRadius = goButton.frame.size.height/2
-        
         hudView.layer.cornerRadius = 6
     }
     
@@ -196,14 +195,14 @@ class GameViewController: UIViewController {
     
     //MARK: helpers
     
-    func randomPosition (lowerBound lower: Float, upperBound upper: Float) -> Float {
-        return Float(arc4random()) / Float(UInt32.max) * (lower - upper) + upper
+    func randomValue(from min: Float, to max: Float) -> Float {
+        return Float(arc4random()) / Float(UInt32.max) * (min - max) + max
     }
     
     func random3DPosition() -> SCNVector3 {
-        let xPos = randomPosition(lowerBound: -SCENARIO_LIMIT, upperBound: SCENARIO_LIMIT)
-        let yPos = randomPosition(lowerBound: -SCENARIO_LIMIT, upperBound: SCENARIO_LIMIT)
-        let zPos = randomPosition(lowerBound: -0.6, upperBound: -1)
+        let xPos = randomValue(from: -SCENARIO_RADIUS, to: SCENARIO_RADIUS)
+        let yPos = randomValue(from: -0.5, to: SCENARIO_RADIUS)
+        let zPos = randomValue(from: -SCENARIO_RADIUS, to: SCENARIO_RADIUS)
         return SCNVector3(xPos, yPos, zPos)
     }
 }

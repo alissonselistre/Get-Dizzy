@@ -10,35 +10,31 @@ import ARKit
 
 extension SCNNode {
     
-    func fadeIn() {
-        let fadeInAction = SCNAction.fadeIn(duration: 0.5)
-        runAction(fadeInAction)
+    //MARK: animations
+    
+    func fadeIn(completion: (() -> Void)? = nil) {
+        let fadeInAction = SCNAction.fadeIn(duration: 0.3)
+        animateWithCompletion(animation: fadeInAction, completion: completion)
     }
     
-    func blow(completion: (() -> Void)? = nil) {
-        let fadeOutAction = SCNAction.fadeOut(duration: 0.6)
-        let scaleOutAction = SCNAction.scale(to: 30, duration: 0.6)
-        let blowAction = SCNAction.group([scaleOutAction, fadeOutAction])
+    func fadeOut(completion: (() -> Void)? = nil) {
+        let fadeOutAction = SCNAction.fadeOut(duration: 0.3)
+        animateWithCompletion(animation: fadeOutAction, completion: completion)
+    }
+    
+    //MARK: helpers
+    
+    private func animateWithCompletion(animation: SCNAction, completion: (() -> Void)? = nil) {
         
-        let completionAction = SCNAction.run { (node) in
-            self.reset()
-            if let completion = completion {
+        var animationSequence = [animation]
+        
+        if let completion = completion {
+            let completionAction = SCNAction.run { (node) in
                 completion()
             }
+            animationSequence.append(completionAction)
         }
         
-        let animationSequence = SCNAction.sequence([blowAction, completionAction])
-        
-        runAction(animationSequence)
-    }
-    
-    func reset() {
-        scale = SCNVector3(x: 1, y: 1, z: 1)
-        opacity = 0
-    }
-    
-    func infiniteRotation() {
-        let rotateAction = SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 1, z: 0, duration: 0.2))
-        runAction(rotateAction)
+        runAction(SCNAction.sequence(animationSequence))
     }
 }
