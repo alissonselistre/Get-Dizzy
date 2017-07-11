@@ -15,8 +15,9 @@
 		36AEEEF71F0BF95D004AAD2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36AEEEF51F0BF95D004AAD2E /* LaunchScreen.storyboard */; };
 		36AEEF021F0BF95E004AAD2E /* Get_DizzyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AEEF011F0BF95E004AAD2E /* Get_DizzyTests.swift */; };
 		36AEEF0F1F0C00D2004AAD2E /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AEEF0E1F0C00D2004AAD2E /* Object.swift */; };
-		36ECEA871F0C1A3600EA627E /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 36AEEF121F0C190E004AAD2E /* Models.scnassets */; };
+		36ECEA871F0C1A3600EA627E /* Assets.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 36AEEF121F0C190E004AAD2E /* Assets.scnassets */; };
 		36ECEA891F0C27E500EA627E /* NodeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ECEA881F0C27E500EA627E /* NodeAnimation.swift */; };
+		36F385121F15545C00DBCBA8 /* Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F385111F15545C00DBCBA8 /* Material.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,8 +43,9 @@
 		36AEEF011F0BF95E004AAD2E /* Get_DizzyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Get_DizzyTests.swift; sourceTree = "<group>"; };
 		36AEEF031F0BF95E004AAD2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		36AEEF0E1F0C00D2004AAD2E /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
-		36AEEF121F0C190E004AAD2E /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Models.scnassets; sourceTree = "<group>"; };
+		36AEEF121F0C190E004AAD2E /* Assets.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Assets.scnassets; sourceTree = "<group>"; };
 		36ECEA881F0C27E500EA627E /* NodeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeAnimation.swift; sourceTree = "<group>"; };
+		36F385111F15545C00DBCBA8 /* Material.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Material.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,12 +91,13 @@
 				36AEEEEB1F0BF95D004AAD2E /* GameViewController.swift */,
 				36AEEEED1F0BF95D004AAD2E /* Main.storyboard */,
 				36AEEEF31F0BF95D004AAD2E /* Assets.xcassets */,
-				36AEEF121F0C190E004AAD2E /* Models.scnassets */,
+				36AEEF121F0C190E004AAD2E /* Assets.scnassets */,
 				36AEEEF51F0BF95D004AAD2E /* LaunchScreen.storyboard */,
 				36AEEEF81F0BF95D004AAD2E /* Info.plist */,
 				36AEEEF01F0BF95D004AAD2E /* Get_Dizzy.xcdatamodeld */,
 				36AEEF0E1F0C00D2004AAD2E /* Object.swift */,
 				36ECEA881F0C27E500EA627E /* NodeAnimation.swift */,
+				36F385111F15545C00DBCBA8 /* Material.swift */,
 			);
 			path = "Get Dizzy";
 			sourceTree = "<group>";
@@ -190,7 +193,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36AEEEF71F0BF95D004AAD2E /* LaunchScreen.storyboard in Resources */,
-				36ECEA871F0C1A3600EA627E /* Models.scnassets in Resources */,
+				36ECEA871F0C1A3600EA627E /* Assets.scnassets in Resources */,
 				36AEEEF41F0BF95D004AAD2E /* Assets.xcassets in Resources */,
 				36AEEEEF1F0BF95D004AAD2E /* Main.storyboard in Resources */,
 			);
@@ -214,6 +217,7 @@
 				36AEEEEA1F0BF95D004AAD2E /* AppDelegate.swift in Sources */,
 				36ECEA891F0C27E500EA627E /* NodeAnimation.swift in Sources */,
 				36AEEEF21F0BF95D004AAD2E /* Get_Dizzy.xcdatamodeld in Sources */,
+				36F385121F15545C00DBCBA8 /* Material.swift in Sources */,
 				36AEEF0F1F0C00D2004AAD2E /* Object.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

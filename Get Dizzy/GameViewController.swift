@@ -9,9 +9,9 @@
 import ARKit
 
 //MARK: Game Settings
-let SCENARIO_RADIUS: Float = 1.5
+let SCENARIO_RADIUS: Float = 1.5 // in meters
 let NUMBER_OF_OBJECTS: Int = 20
-let TIME_TO_FINISH: Int = 20
+let TIME_TO_FINISH: Int = 20 // in seconds
 
 class GameViewController: UIViewController {
     
@@ -45,11 +45,9 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureUI()
-        
-        // create a new scene
-        let scene = SCNScene()
-        sceneView.scene = scene
+        setupUI()
+        setupScene()
+        setupLights()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -118,7 +116,7 @@ class GameViewController: UIViewController {
         
         // load object and your model
         let object = Object()
-        object.loadModel()
+        object.loadRingModel()
         
         // set a random position in scene
         object.position = random3DPosition()
@@ -162,11 +160,27 @@ class GameViewController: UIViewController {
     
     //MARK: UI helpers
     
-    func configureUI() {
+    func setupUI() {
         splashView.layer.cornerRadius = 10
         goButton.layer.masksToBounds = true
         goButton.layer.cornerRadius = goButton.frame.size.height/2
         hudView.layer.cornerRadius = 6
+    }
+    
+    func setupScene() {
+        // create a new scene
+        let scene = SCNScene()
+        sceneView.scene = scene
+        
+        sceneView.antialiasingMode = SCNAntialiasingMode.multisampling4X
+    }
+    
+    func setupLights() {
+        sceneView.autoenablesDefaultLighting = false
+        sceneView.automaticallyUpdatesLighting = false
+        
+        let environmentImage = UIImage(named:"Assets.scnassets/Environments/spherical.jpg")
+        sceneView.scene.lightingEnvironment.contents = environmentImage
     }
     
     func setUItoStartGame(completion: (() -> Void)? = nil) {
