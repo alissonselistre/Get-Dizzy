@@ -63,8 +63,25 @@ class GameViewController: UIViewController {
     //MARK: control methods
     
     func loadObjects() {
-        for _ in 0..<NUMBER_OF_OBJECTS {
-            addObject()
+        
+        let baseObjects = [
+            Object.cube(),
+            Object.pyramid(),
+            Object.sphere(),
+            Object.ring()
+        ]
+        
+        for i in 0..<(NUMBER_OF_OBJECTS) {
+            
+            var index = i
+            while index >= baseObjects.count {
+                index -= baseObjects.count
+            }
+            
+            let object = baseObjects[index].clone()
+            object.opacity = 0
+            objects.append(object)
+            sceneView.scene.rootNode.addChildNode(object)
         }
     }
     
@@ -110,24 +127,6 @@ class GameViewController: UIViewController {
             object.position = self.random3DPosition()
             object.fadeIn()
         }
-    }
-    
-    func addObject() {
-        
-        // load object and your model
-        let object = Object()
-        object.loadRingModel()
-        
-        // set a random position in scene
-        object.position = random3DPosition()
-        
-        // set the first state of the object for the animations
-        object.opacity = 0
-        
-        // add this object in scene
-        sceneView.scene.rootNode.addChildNode(object)
-        
-        objects.append(object)
     }
     
     func hideAllObjects() {

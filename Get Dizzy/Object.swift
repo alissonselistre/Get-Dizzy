@@ -10,46 +10,41 @@ import ARKit
 
 class Object: SCNNode {
     
-    let dimensionScale: CGFloat = 0.2
+    static let dimensionScale: CGFloat = 0.2
     
-    func loadCubeModel() {
+    class func cube() -> Object {
+        let object = Object()
         let cube = SCNBox.init(width: dimensionScale, height: dimensionScale, length: dimensionScale, chamferRadius: 0)
         cube.materials = [Material.stone]
         let node = SCNNode(geometry: cube)
-        addChildNode(node)
+        object.addChildNode(node)
+        return object
     }
     
-    func loadSphereModel() {
+    class func sphere() -> Object {
+        let object = Object()
         let sphere = SCNSphere.init(radius: dimensionScale)
         sphere.materials = [Material.rustedIron]
         let node = SCNNode(geometry: sphere)
-        addChildNode(node)
+        object.addChildNode(node)
+        return object
     }
     
-    func loadPyramidModel() {
+    class func pyramid() -> Object {
+        let object = Object()
         let pyramid = SCNPyramid.init(width: dimensionScale, height: dimensionScale, length: dimensionScale)
         pyramid.materials = [Material.woodenFloor]
         let node = SCNNode(geometry: pyramid)
-        addChildNode(node)
+        object.addChildNode(node)
+        return object
     }
     
-    func loadRingModel() {
+    class func ring() -> Object {
+        let object = Object()
         let torus = SCNTorus.init(ringRadius: dimensionScale, pipeRadius: dimensionScale*0.2)
         torus.materials = [Material.gold]
         let node = SCNNode(geometry: torus)
-        addChildNode(node)
-    }
-    
-    func loadModel() {
-        
-        guard let virtualObjectScene = SCNScene(named: "Assets.scnassets/Models/Vase/vase.scn") else { return }
-        
-        let wrapperNode = SCNNode()
-        
-        for child in virtualObjectScene.rootNode.childNodes {
-            wrapperNode.addChildNode(child)
-        }
-        
-        self.addChildNode(wrapperNode)
+        object.addChildNode(node)
+        return object
     }
 }
