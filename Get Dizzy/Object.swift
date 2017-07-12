@@ -9,41 +9,65 @@
 import ARKit
 
 class Object: SCNNode {
-    
-    static let dimensionScale: CGFloat = 0.2
+
+    //MARK: public
     
     class func cube() -> Object {
         let object = Object()
-        let cube = SCNBox.init(width: dimensionScale, height: dimensionScale, length: dimensionScale, chamferRadius: 0)
+        
+        let scale = CGFloat(SCENARIO_RADIUS * 0.06)
+        
+        let cube = SCNBox.init(width: scale, height: scale, length: scale, chamferRadius: 0)
         cube.materials = [Material.stone]
+        
         let node = SCNNode(geometry: cube)
+        node.name = "object"
+        
         object.addChildNode(node)
         return object
     }
     
     class func sphere() -> Object {
         let object = Object()
-        let sphere = SCNSphere.init(radius: dimensionScale)
+        
+        let scale = CGFloat(SCENARIO_RADIUS * 0.06)
+        
+        let sphere = SCNSphere.init(radius: scale)
         sphere.materials = [Material.rustedIron]
+        
         let node = SCNNode(geometry: sphere)
+        node.name = "object"
+        
         object.addChildNode(node)
         return object
     }
     
     class func pyramid() -> Object {
         let object = Object()
-        let pyramid = SCNPyramid.init(width: dimensionScale, height: dimensionScale, length: dimensionScale)
+        
+        let scale = CGFloat(SCENARIO_RADIUS * 0.07)
+        
+        let pyramid = SCNPyramid.init(width: scale, height: scale, length: scale)
         pyramid.materials = [Material.woodenFloor]
+        
         let node = SCNNode(geometry: pyramid)
+        node.name = "object"
+        
         object.addChildNode(node)
         return object
     }
     
     class func ring() -> Object {
         let object = Object()
-        let torus = SCNTorus.init(ringRadius: dimensionScale, pipeRadius: dimensionScale*0.2)
+        
+        let scale = CGFloat(SCENARIO_RADIUS * 0.02)
+        
+        let torus = SCNTorus.init(ringRadius: scale, pipeRadius: scale*0.2)
         torus.materials = [Material.gold]
+        
         let node = SCNNode(geometry: torus)
+        node.name = "object"
+        
         object.addChildNode(node)
         return object
     }

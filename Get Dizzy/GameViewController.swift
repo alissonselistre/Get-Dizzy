@@ -8,12 +8,7 @@
 
 import ARKit
 
-//MARK: Game Settings
-let SCENARIO_RADIUS: Float = 1.5 // in meters
-let NUMBER_OF_OBJECTS: Int = 20
-let TIME_TO_FINISH: Int = 20 // in seconds
-
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     
     //MARK: vars
     
@@ -48,6 +43,7 @@ class GameViewController: UIViewController {
         setupUI()
         setupScene()
         setupLights()
+        setupPhysics()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,7 +84,9 @@ class GameViewController: UIViewController {
     func showObjects() {
         for object in objects {
             object.position = random3DPosition()
-            object.fadeIn()
+            object.fadeIn(completion: {
+                self.addObjectPhysics(object: object)
+            })
         }
     }
     
@@ -123,6 +121,8 @@ class GameViewController: UIViewController {
     func destroyObject(object: SCNNode) {
         destroyedCount += 1
         
+        removePhysics(object: object)
+        
         object.fadeOut() {
             object.position = self.random3DPosition()
             object.fadeIn()
@@ -131,6 +131,7 @@ class GameViewController: UIViewController {
     
     func hideAllObjects() {
         for object in objects {
+            removePhysics(object: object)
             object.fadeOut()
         }
     }
@@ -150,11 +151,17 @@ class GameViewController: UIViewController {
             if let hitObject = hitList.first {
                 let node = hitObject.node
                 
-                if node.hasActions == false {
+                if node.name == "object" && node.hasActions == false {
                     destroyObject(object: node)
                 }
             }
         }
+    }
+    
+    //MARK: SCNPhysicsContactDelegate
+    
+    func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
+        
     }
     
     //MARK: UI helpers
@@ -167,10 +174,8 @@ class GameViewController: UIViewController {
     }
     
     func setupScene() {
-        // create a new scene
         let scene = SCNScene()
         sceneView.scene = scene
-        
         sceneView.antialiasingMode = SCNAntialiasingMode.multisampling4X
     }
     
@@ -180,6 +185,89 @@ class GameViewController: UIViewController {
         
         let environmentImage = UIImage(named:"Assets.scnassets/Environments/spherical.jpg")
         sceneView.scene.lightingEnvironment.contents = environmentImage
+    }
+    
+    func setupPhysics() {
+        
+        // creates a box to be the scenario limit
+        let wallThickness: CGFloat = 0.01
+        let scenarioDiameter = CGFloat(SCENARIO_RADIUS * 2)
+        
+        // geometries
+        let frontWall = SCNBox.init(width: scenarioDiameter, height: scenarioDiameter, length: wallThickness, chamferRadius: 0)
+        let backWall = SCNBox.init(width: scenarioDiameter, height: scenarioDiameter, length: wallThickness, chamferRadius: 0)
+        let leftWall = SCNBox.init(width: wallThickness, height: scenarioDiameter, length: scenarioDiameter, chamferRadius: 0)
+        let rightWall = SCNBox.init(width: wallThickness, height: scenarioDiameter, length: scenarioDiameter, chamferRadius: 0)
+        let roof = SCNBox.init(width: scenarioDiameter, height: wallThickness, length: scenarioDiameter, chamferRadius: 0)
+        let ground = SCNBox.init(width: scenarioDiameter, height: wallThickness, length: scenarioDiameter, chamferRadius: 0)
+        
+        // materials
+        let frontWallMaterial = SCNMaterial()
+        frontWallMaterial.diffuse.contents = UIColor.red.withAlphaComponent(0.3)
+        frontWall.materials = [frontWallMaterial]
+        
+        let backWallMaterial = SCNMaterial()
+        backWallMaterial.diffuse.contents = UIColor.blue.withAlphaComponent(0.3)
+        backWall.materials = [backWallMaterial]
+        
+        let leftWallMaterial = SCNMaterial()
+        leftWallMaterial.diffuse.contents = UIColor.green.withAlphaComponent(0.3)
+        leftWall.materials = [leftWallMaterial]
+        
+        let rightWallMaterial = SCNMaterial()
+        rightWallMaterial.diffuse.contents = UIColor.yellow.withAlphaComponent(0.3)
+        rightWall.materials = [rightWallMaterial]
+        
+        let roofMaterial = SCNMaterial()
+        roofMaterial.diffuse.contents = UIColor.cyan.withAlphaComponent(0.3)
+        roof.materials = [roofMaterial]
+        
+        let groundMaterial = SCNMaterial()
+        groundMaterial.diffuse.contents = UIColor.white.withAlphaComponent(0.3)
+        ground.materials = [groundMaterial]
+        
+        // nodes
+        let frontWallNode = SCNNode.init(geometry: frontWall)
+        frontWallNode.name = "frontWall"
+        frontWallNode.position = SCNVector3.init(0, 0, -SCENARIO_RADIUS)
+        
+        let backWallNode = SCNNode.init(geometry: backWall)
+        backWallNode.name = "backWall"
+        backWallNode.position = SCNVector3.init(0, 0, SCENARIO_RADIUS)
+        
+        let leftWallNode = SCNNode.init(geometry: leftWall)
+        leftWallNode.name = "leftWall"
+        leftWallNode.position = SCNVector3.init(-SCENARIO_RADIUS, 0, 0)
+        
+        let rightWallNode = SCNNode.init(geometry: rightWall)
+        rightWallNode.name = "rightWall"
+        rightWallNode.position = SCNVector3.init(SCENARIO_RADIUS, 0, 0)
+        
+        let roofNode = SCNNode.init(geometry: roof)
+        roofNode.name = "roof"
+        roofNode.position = SCNVector3.init(0, SCENARIO_RADIUS, 0)
+        
+        let groundNode = SCNNode.init(geometry: ground)
+        groundNode.name = "ground"
+        groundNode.position = SCNVector3.init(0, -SCENARIO_RADIUS, 0)
+        
+        // physic bodies
+        addScenarioPhysics(scenarioPiece: frontWallNode)
+        addScenarioPhysics(scenarioPiece: backWallNode)
+        addScenarioPhysics(scenarioPiece: leftWallNode)
+        addScenarioPhysics(scenarioPiece: rightWallNode)
+        addScenarioPhysics(scenarioPiece: roofNode)
+        addScenarioPhysics(scenarioPiece: groundNode)
+        
+        sceneView.scene.rootNode.addChildNode(frontWallNode)
+        sceneView.scene.rootNode.addChildNode(backWallNode)
+        sceneView.scene.rootNode.addChildNode(leftWallNode)
+        sceneView.scene.rootNode.addChildNode(rightWallNode)
+        sceneView.scene.rootNode.addChildNode(roofNode)
+        sceneView.scene.rootNode.addChildNode(groundNode)
+        
+        sceneView.scene.physicsWorld.gravity = SCNVector3.init(0, 0, 0)
+        sceneView.scene.physicsWorld.contactDelegate = self
     }
     
     func setUItoStartGame(completion: (() -> Void)? = nil) {
@@ -213,10 +301,29 @@ class GameViewController: UIViewController {
     }
     
     func random3DPosition() -> SCNVector3 {
-        let xPos = randomValue(from: -SCENARIO_RADIUS, to: SCENARIO_RADIUS)
-        let yPos = randomValue(from: -0.5, to: SCENARIO_RADIUS)
-        let zPos = randomValue(from: -SCENARIO_RADIUS, to: SCENARIO_RADIUS)
+        let spawnAreaRadius = SCENARIO_RADIUS*0.6
+        let xPos = randomValue(from: -spawnAreaRadius, to: spawnAreaRadius)
+        let yPos = randomValue(from: -spawnAreaRadius, to: spawnAreaRadius)
+        let zPos = randomValue(from: -spawnAreaRadius, to: spawnAreaRadius)
         return SCNVector3(xPos, yPos, zPos)
+    }
+    
+    func addObjectPhysics(object: SCNNode) {
+        let physicsBody = SCNPhysicsBody(type: SCNPhysicsBodyType.dynamic, shape: nil)
+        physicsBody.mass = 0.1
+        physicsBody.categoryBitMask = CollisionCategory.Object.rawValue
+        object.childNodes.first?.physicsBody = physicsBody
+    }
+    
+    func addScenarioPhysics(scenarioPiece: SCNNode) {
+        let physicsBody = SCNPhysicsBody.init(type: SCNPhysicsBodyType.kinematic, shape: nil)
+        physicsBody.categoryBitMask = CollisionCategory.Ground.rawValue
+        physicsBody.contactTestBitMask = CollisionCategory.Object.rawValue
+        scenarioPiece.physicsBody = physicsBody
+    }
+    
+    func removePhysics(object: SCNNode) {
+        object.childNodes.first?.physicsBody = nil
     }
 }
 
