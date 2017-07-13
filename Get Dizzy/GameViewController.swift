@@ -139,7 +139,6 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     }
     
     func destroyObject(object: SCNNode) {
-        destroyedCount += 1
         hideObject(object: object) {
             self.showObject(object: object)
         }
@@ -160,8 +159,16 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
             if let hitObject = hitList.first {
                 let node = hitObject.node
                 
-                if node.name == "object" && node.hasActions == false {
-                    destroyObject(object: node)
+                if node.hasActions == false {
+                    if node.name == "ring" {
+                        destroyedCount += 1
+                        destroyObject(object: node)
+                    } else if node.name == "object" {
+                        if destroyedCount > 0 {
+                            destroyedCount -= 1
+                        }
+                        destroyObject(object: node)
+                    }
                 }
             }
         }

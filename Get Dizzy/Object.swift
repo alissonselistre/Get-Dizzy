@@ -66,7 +66,7 @@ class Object: SCNNode {
         torus.materials = [Material.gold]
         
         let node = SCNNode(geometry: torus)
-        node.name = "object"
+        node.name = "ring"
         
         object.addChildNode(node)
         return object

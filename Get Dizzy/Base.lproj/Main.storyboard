@@ -11,6 +11,7 @@
     <customFonts key="customFonts">
         <array key="ChalkboardSE.ttc">
             <string>ChalkboardSE-Bold</string>
+            <string>ChalkboardSE-Light</string>
             <string>ChalkboardSE-Regular</string>
         </array>
     </customFonts>
@@ -58,29 +59,39 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I challenge you to get the maximum number of rings you can without touching in any other object!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="nff-H9-2Ld">
+                                        <rect key="frame" x="32" y="407" width="279" height="146"/>
+                                        <fontDescription key="fontDescription" name="ChalkboardSE-Light" family="Chalkboard SE" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="nff-H9-2Ld" secondAttribute="trailing" constant="32" id="Fp2-ww-4cm"/>
                                     <constraint firstItem="OkA-Uw-4Rr" firstAttribute="top" secondItem="uLo-Mn-rYD" secondAttribute="bottom" constant="20" id="JGM-pf-XY2"/>
                                     <constraint firstItem="uLo-Mn-rYD" firstAttribute="centerX" secondItem="mFi-9j-o2y" secondAttribute="centerX" id="Lji-kU-qLc"/>
                                     <constraint firstItem="OkA-Uw-4Rr" firstAttribute="centerX" secondItem="mFi-9j-o2y" secondAttribute="centerX" id="ZHU-WD-SWy"/>
+                                    <constraint firstAttribute="bottom" secondItem="nff-H9-2Ld" secondAttribute="bottom" constant="74" id="mZW-rY-vaN"/>
                                     <constraint firstItem="OkA-Uw-4Rr" firstAttribute="centerY" secondItem="mFi-9j-o2y" secondAttribute="centerY" id="noV-yj-DLI"/>
+                                    <constraint firstItem="nff-H9-2Ld" firstAttribute="top" secondItem="OkA-Uw-4Rr" secondAttribute="bottom" constant="18.5" id="rN0-ES-YhW"/>
+                                    <constraint firstItem="nff-H9-2Ld" firstAttribute="leading" secondItem="mFi-9j-o2y" secondAttribute="leading" constant="32" id="wg3-GB-U7K"/>
                                 </constraints>
                             </view>
                             <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h8C-6L-3Ek">
                                 <rect key="frame" x="16" y="587" width="343" height="60"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Destroyed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z3a-uh-CNO">
-                                        <rect key="frame" x="8" y="8" width="91" height="22"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z3a-uh-CNO">
+                                        <rect key="frame" x="8" y="8" width="50" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="22" id="Zm8-0a-R9A"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="20"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgI-XH-qo7">
-                                        <rect key="frame" x="48.5" y="30" width="10.5" height="22"/>
+                                        <rect key="frame" x="28" y="30" width="10.5" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="22" id="1mg-ej-4Yu"/>
                                         </constraints>
@@ -94,7 +105,7 @@
                                             <constraint firstAttribute="height" constant="22" id="NEt-Pw-ewI"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="20"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dqf-Ch-jB2">
