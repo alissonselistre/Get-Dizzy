@@ -112,9 +112,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     func showObject(object: SCNNode) {
         object.position = random3DPosition()
         addObjectPhysics(object: object)
-        object.fadeIn {
-            //self.applyRandomImpulse(object: object)
-        }
+        object.fadeIn()
     }
     
     func showObjects() {
@@ -322,15 +320,6 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         let yPos = randomValue(from: -spawnAreaRadius, to: spawnAreaRadius)
         let zPos = randomValue(from: -spawnAreaRadius, to: spawnAreaRadius)
         return SCNVector3(xPos, yPos, zPos)
-    }
-    
-    func applyRandomImpulse(object: SCNNode) {
-        let force: Float = 0.1
-        let x = randomValue(from: force, to: force)
-        let y = randomValue(from: force, to: force)
-        let z = randomValue(from: force, to: force)
-        let direction = SCNVector3.init(x, y, z)
-        object.physicsBody?.applyForce(direction, asImpulse: true)
     }
     
     func addObjectPhysics(object: SCNNode) {
