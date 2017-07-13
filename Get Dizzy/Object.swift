@@ -60,7 +60,7 @@ class Object: SCNNode {
     class func ring() -> Object {
         let object = Object()
         
-        let scale = CGFloat(SCENARIO_RADIUS * 0.02)
+        let scale = CGFloat(SCENARIO_RADIUS * 0.03)
         
         let torus = SCNTorus.init(ringRadius: scale, pipeRadius: scale*0.2)
         torus.materials = [Material.gold]

@@ -81,15 +81,6 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         }
     }
     
-    func showObjects() {
-        for object in objects {
-            object.position = random3DPosition()
-            object.fadeIn(completion: {
-                self.addObjectPhysics(object: object)
-            })
-        }
-    }
-    
     func startGame() {
         
         destroyedCount = 0
@@ -118,21 +109,39 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         }
     }
     
-    func destroyObject(object: SCNNode) {
-        destroyedCount += 1
-        
+    func showObject(object: SCNNode) {
+        object.position = random3DPosition()
+        addObjectPhysics(object: object)
+        object.fadeIn {
+            //self.applyRandomImpulse(object: object)
+        }
+    }
+    
+    func showObjects() {
+        for object in objects {
+            showObject(object: object)
+        }
+    }
+    
+    func hideObject(object: SCNNode, completion: (() -> Void)? = nil) {
         removePhysics(object: object)
-        
-        object.fadeOut() {
-            object.position = self.random3DPosition()
-            object.fadeIn()
+        object.fadeOut {
+            if let completion = completion {
+                completion()
+            }
         }
     }
     
     func hideAllObjects() {
         for object in objects {
-            removePhysics(object: object)
-            object.fadeOut()
+            hideObject(object: object)
+        }
+    }
+    
+    func destroyObject(object: SCNNode) {
+        destroyedCount += 1
+        hideObject(object: object) {
+            self.showObject(object: object)
         }
     }
     
@@ -190,7 +199,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     func setupPhysics() {
         
         // creates a box to be the scenario limit
-        let wallThickness: CGFloat = 0.01
+        let wallThickness: CGFloat = 0.001
         let scenarioDiameter = CGFloat(SCENARIO_RADIUS * 2)
         
         // geometries
@@ -301,16 +310,26 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     }
     
     func random3DPosition() -> SCNVector3 {
-        let spawnAreaRadius = SCENARIO_RADIUS*0.6
+        let spawnAreaRadius = SCENARIO_RADIUS * 0.5
         let xPos = randomValue(from: -spawnAreaRadius, to: spawnAreaRadius)
         let yPos = randomValue(from: -spawnAreaRadius, to: spawnAreaRadius)
         let zPos = randomValue(from: -spawnAreaRadius, to: spawnAreaRadius)
         return SCNVector3(xPos, yPos, zPos)
     }
     
+    func applyRandomImpulse(object: SCNNode) {
+        let force: Float = 0.1
+        let x = randomValue(from: force, to: force)
+        let y = randomValue(from: force, to: force)
+        let z = randomValue(from: force, to: force)
+        let direction = SCNVector3.init(x, y, z)
+        object.physicsBody?.applyForce(direction, asImpulse: true)
+    }
+    
     func addObjectPhysics(object: SCNNode) {
         let physicsBody = SCNPhysicsBody(type: SCNPhysicsBodyType.dynamic, shape: nil)
-        physicsBody.mass = 0.1
+        physicsBody.mass = 1
+        physicsBody.damping = 0
         physicsBody.categoryBitMask = CollisionCategory.Object.rawValue
         object.childNodes.first?.physicsBody = physicsBody
     }

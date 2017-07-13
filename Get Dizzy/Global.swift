@@ -12,6 +12,6 @@ enum CollisionCategory: Int {
 }
 
 //MARK: Game Settings
-let SCENARIO_RADIUS: Float = 4 // in meters
+let SCENARIO_RADIUS: Float = 1 // in meters
 let NUMBER_OF_OBJECTS: Int = 300
-let TIME_TO_FINISH: Int = 60 // in seconds
+let TIME_TO_FINISH: Int = 30 // in seconds
